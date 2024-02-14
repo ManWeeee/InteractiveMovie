@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+
 
 public class VideoFlowController : MonoBehaviour
 {
@@ -10,13 +12,21 @@ public class VideoFlowController : MonoBehaviour
     [SerializeField]
     private Clip _clip;
 
-    void Start()
+    private void Awake()
     {
-        _videoPlayer.clip = _clip.GetCurrentVideoClip();
+        DontDestroyOnLoad(this);
     }
 
-    void Update()
+    void Start()
     {
-        
+        _clip = Resources.Load("MenuClip") as Clip;
+        _videoPlayer.clip = _clip.GetCurrentVideoClip();
+        _videoPlayer.Play();
+    }
+
+    public void LoadNextClip(int sceneIndex)
+    {
+        _videoPlayer.clip = _clip.GetNextVideoClip(sceneIndex);
+        _videoPlayer.Play();
     }
 }

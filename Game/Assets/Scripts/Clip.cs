@@ -6,8 +6,9 @@ using UnityEngine.Video;
 [CreateAssetMenu(fileName = "new Clip", menuName = "Video/Clip", order = 1)]
 public class Clip : ScriptableObject
 {
+    [SerializeField]
     VideoClip _clip;
-
+    [SerializeField]
     VideoClip[] _nextClips;
 
     public VideoClip GetCurrentVideoClip()
