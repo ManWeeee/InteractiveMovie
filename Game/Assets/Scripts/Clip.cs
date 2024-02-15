@@ -9,14 +9,14 @@ public class Clip : ScriptableObject
     [SerializeField]
     VideoClip _clip;
     [SerializeField]
-    VideoClip[] _nextClips;
+    Clip[] _nextClips;
 
     public VideoClip GetCurrentVideoClip()
     {
         return _clip;
     }
 
-    public VideoClip GetNextVideoClip(int index)
+    public Clip GetNextClip(int index)
     {
         return _nextClips[index];
     }

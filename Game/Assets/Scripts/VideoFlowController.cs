@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine.Video;
-
+using Zenject;
 
 public class VideoFlowController : MonoBehaviour
 {
@@ -12,9 +10,11 @@ public class VideoFlowController : MonoBehaviour
     [SerializeField]
     private Clip _clip;
 
-    private void Awake()
+    [Inject]
+    private void Construct(VideoPlayer videoPlayer)
     {
-        DontDestroyOnLoad(this);
+        _videoPlayer = videoPlayer;
+        _videoPlayer.targetCamera = Camera.main;
     }
 
     void Start()
@@ -26,7 +26,8 @@ public class VideoFlowController : MonoBehaviour
 
     public void LoadNextClip(int sceneIndex)
     {
-        _videoPlayer.clip = _clip.GetNextVideoClip(sceneIndex);
+        _clip = _clip.GetNextClip(sceneIndex);
+        _videoPlayer.clip = _clip.GetCurrentVideoClip();
         _videoPlayer.Play();
     }
 }
