@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -7,14 +5,17 @@ using UnityEngine.Video;
 public class Clip : ScriptableObject
 {
     [SerializeField]
-    VideoClip _clip;
+    VideoClip _videoClip;
+    [SerializeField]
+    AudioClip _audioClip;
     [SerializeField]
     Clip[] _nextClips;
+    [SerializeField]
+    Transform choicePositions;
 
-    public VideoClip GetCurrentVideoClip()
-    {
-        return _clip;
-    }
+    public VideoClip VideoClip => _videoClip;
+    public AudioClip AudioClip => _audioClip;
+    public Clip[] NextClips => _nextClips;
 
     public Clip GetNextClip(int index)
     {

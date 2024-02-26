@@ -4,14 +4,16 @@ using Zenject;
 
 public class LocalInstaller : MonoInstaller
 {
+    /*[SerializeField]
+    private GameObject _videoPlayerPrefab;*/
     [SerializeField]
-    private GameObject _videoPlayerPrefab;
+    private Clip _clip;
     public override void InstallBindings()
     {
-        BindVideoPlayer();
+        BindClip();
     }
 
-    private void BindVideoPlayer()
+/*    private void BindVideoPlayer()
     {
         VideoPlayer videoPlayerInstance = Container
             .InstantiatePrefabForComponent<VideoPlayer>(_videoPlayerPrefab);
@@ -20,6 +22,14 @@ public class LocalInstaller : MonoInstaller
             .Bind<VideoPlayer>()
             .FromInstance(videoPlayerInstance)
             .AsSingle();
-    }
+    }*/
     
+
+    private void BindClip()
+    {
+        Container
+            .Bind<Clip>()
+            .FromInstance(_clip)
+            .AsSingle();
+    }
 }
