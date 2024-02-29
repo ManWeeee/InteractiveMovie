@@ -8,27 +8,36 @@ public class ClipLoader : MonoBehaviour
 {
     [SerializeField]
     Clip _clip;
+    [SerializeField]
+    ClipStarter _starter;
 
-    public static event Action<Clip> OnClipChanged;
+    public static event Action<Clip> OnClipLoaded;
+
     [Inject]
     private void Construct(Clip clip)
     {
         _clip = clip;
     }
+    private void Awake()
+    {
+        _starter = new ClipStarter();
+    }
 
     private void Start()
     {
-        LoadClip(_clip);
+        LoadClip(_clip); 
     }
 
     public void LoadClip(Clip clip)
     {
         _clip = clip;
-        OnClipChanged?.Invoke(_clip);
+        OnClipLoaded?.Invoke(_clip);
+        StartCoroutine(_starter.StartVideo(_clip.VideoStartDelay));
+        StartCoroutine(_starter.StartSound(_clip.AudioStartDelay));
     }
     private void LoadNextClip(int index)
     {
         _clip = _clip.GetNextClip(index);
-        OnClipChanged?.Invoke(_clip);
+        OnClipLoaded?.Invoke(_clip);
     }
 }

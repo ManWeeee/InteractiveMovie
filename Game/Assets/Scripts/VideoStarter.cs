@@ -10,8 +10,13 @@ public class VideoStarter : MonoBehaviour
 
     private void Start()
     {
+        ClipStarter.OnVideoStarted += StartVideo;
         _videoPlayer = GetComponent<VideoPlayer>(); 
-        StartVideo();
+    }
+
+    private void OnDestroy()
+    {
+        ClipStarter.OnVideoStarted -= StartVideo;
     }
 
     public void StartVideo()

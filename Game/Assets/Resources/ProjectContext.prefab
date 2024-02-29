@@ -74,4 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a68bc26dc391fb4e9bd73922f12bffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _videoPlayerPrefab: {fileID: 2749975260956011167, guid: 50d38ae82146251499bbc16cf64be923, type: 3}
+  _clipLoader: {fileID: 8536595456689397726, guid: 0fb0efd4946256e4a90428b475de623a, type: 3}
+  _clipStarter: {fileID: 4685273266954648055, guid: 167e9c42af7b454499543ec60797fe2d, type: 3}

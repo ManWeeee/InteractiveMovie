@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: MenuClip
   m_EditorClassIdentifier: 
   _videoClip: {fileID: 32900000, guid: 076a8a98b35f4544fa161e7a0de27e2e, type: 3}
+  _videoStartDealy: 5
   _audioClip: {fileID: 8300000, guid: 76e0e9eac81b1fe4e93b0e2a5bd6410b, type: 3}
+  _audioStartDelay: 7
   _nextClips:
   - {fileID: 11400000, guid: eb844457f84bc0a41b1165da755ed72c, type: 2}
+  choicePositions: []

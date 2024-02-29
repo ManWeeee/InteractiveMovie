@@ -5,11 +5,15 @@ public class AudioStarter : MonoBehaviour
 {
     [SerializeField]
     private AudioSource _audioSource;
-
     private void Start()
     {
+        ClipStarter.OnAudioStarted += StartAudio;
         _audioSource = GetComponent<AudioSource>();
-        StartAudio();
+    }
+
+    private void OnDestroy()
+    {
+        ClipStarter.OnAudioStarted -= StartAudio;
     }
 
     public void StartAudio()

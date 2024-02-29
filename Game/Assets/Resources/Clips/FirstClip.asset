@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89216a86da12c314dbc58ad2cf19ba26, type: 3}
   m_Name: FirstClip
   m_EditorClassIdentifier: 
-  _videoClip: {fileID: 32900000, guid: ce1a8543fcd22c34db0617578802b6d8, type: 3}
+  _videoClip: {fileID: 32900000, guid: 5e10bef1e4eb0d84bb7ca94fbeb5cbd5, type: 3}
+  _videoStartDealy: 0.1
+  _audioClip: {fileID: 8300000, guid: 46784ed1e634585409fd0630b0b59947, type: 3}
+  _audioStartDelay: 2
   _nextClips:
   - {fileID: 11400000, guid: 8263f0a3f706b8744a884725b54f0704, type: 2}
+  - {fileID: 11400000, guid: e2662864b17470741a0932e361f4e84b, type: 2}
+  choicePositions:
+  - {fileID: 0}

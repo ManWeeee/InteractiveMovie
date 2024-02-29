@@ -12,12 +12,12 @@ public class VideoLoader : MonoBehaviour
     void Awake()
     {
         _videoPlayer = GetComponent<VideoPlayer>();
-        ClipLoader.OnClipChanged += LoadVideoClip;
+        ClipLoader.OnClipLoaded += LoadVideoClip;
     }
 
     private void OnDestroy()
     {
-        ClipLoader.OnClipChanged -= LoadVideoClip;
+        ClipLoader.OnClipLoaded -= LoadVideoClip;
     }
 
     public void LoadVideoClip(Clip clip)

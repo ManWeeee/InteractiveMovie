@@ -12,12 +12,12 @@ public class AudioLoader : MonoBehaviour
     void Awake()
     {
         _audioSorce = GetComponent<AudioSource>();
-        ClipLoader.OnClipChanged += LoadAudioClip;
+        ClipLoader.OnClipLoaded += LoadAudioClip;
     }
 
     private void OnDestroy()
     {
-        ClipLoader.OnClipChanged -= LoadAudioClip;
+        ClipLoader.OnClipLoaded -= LoadAudioClip;
     }
 
     public void LoadAudioClip(Clip clip)
