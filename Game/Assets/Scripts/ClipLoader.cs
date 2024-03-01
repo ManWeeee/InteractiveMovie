@@ -21,6 +21,12 @@ public class ClipLoader : MonoBehaviour
     private void Awake()
     {
         _starter = new ClipStarter();
+        DecisionMaker.OnDecisionMade += LoadNextClip;
+    }
+
+    private void OnDestroy()
+    {
+        DecisionMaker.OnDecisionMade -= LoadNextClip;
     }
 
     private void Start()
@@ -28,7 +34,7 @@ public class ClipLoader : MonoBehaviour
         LoadClip(_clip); 
     }
 
-    public void LoadClip(Clip clip)
+    private void LoadClip(Clip clip)
     {
         _clip = clip;
         OnClipLoaded?.Invoke(_clip);
@@ -39,5 +45,7 @@ public class ClipLoader : MonoBehaviour
     {
         _clip = _clip.GetNextClip(index);
         OnClipLoaded?.Invoke(_clip);
+        StartCoroutine(_starter.StartVideo(_clip.VideoStartDelay));
+        StartCoroutine(_starter.StartSound(_clip.AudioStartDelay));
     }
 }

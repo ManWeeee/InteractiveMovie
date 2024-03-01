@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: ThirdClip
   m_EditorClassIdentifier: 
   _videoClip: {fileID: 32900000, guid: fe1e16600660d6e4c931b334d7e69fac, type: 3}
+  _videoStartDealy: 0
   _audioClip: {fileID: 0}
+  _audioStartDelay: 0
   _nextClips:
   - {fileID: 11400000, guid: eb844457f84bc0a41b1165da755ed72c, type: 2}
-  choicePositions: {fileID: 0}
+  _choicePositions:
+  - {x: 0, y: 0}
