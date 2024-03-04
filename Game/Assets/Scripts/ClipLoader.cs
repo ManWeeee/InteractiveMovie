@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -20,7 +18,6 @@ public class ClipLoader : MonoBehaviour
     }
     private void Awake()
     {
-        _starter = new ClipStarter();
         DecisionMaker.OnDecisionMade += LoadNextClip;
     }
 
@@ -38,14 +35,14 @@ public class ClipLoader : MonoBehaviour
     {
         _clip = clip;
         OnClipLoaded?.Invoke(_clip);
-        StartCoroutine(_starter.StartVideo(_clip.VideoStartDelay));
-        StartCoroutine(_starter.StartSound(_clip.AudioStartDelay));
+        _starter.StartVideo(_clip.VideoStartDelay);
+        _starter.StartSound(_clip.AudioStartDelay);
     }
     private void LoadNextClip(int index)
     {
         _clip = _clip.GetNextClip(index);
         OnClipLoaded?.Invoke(_clip);
-        StartCoroutine(_starter.StartVideo(_clip.VideoStartDelay));
-        StartCoroutine(_starter.StartSound(_clip.AudioStartDelay));
+        _starter.StartVideo(_clip.VideoStartDelay);
+        _starter.StartSound(_clip.AudioStartDelay);
     }
 }
