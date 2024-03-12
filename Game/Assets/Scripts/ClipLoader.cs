@@ -35,14 +35,14 @@ public class ClipLoader : MonoBehaviour
     {
         _clip = clip;
         OnClipLoaded?.Invoke(_clip);
-        _starter.StartVideo(_clip.VideoStartDelay);
-        _starter.StartSound(_clip.AudioStartDelay);
+        _starter.StartVideo();
+        _starter.StartSound();
     }
     private void LoadNextClip(int index)
     {
         _clip = _clip.GetNextClip(index);
         OnClipLoaded?.Invoke(_clip);
-        _starter.StartVideo(_clip.VideoStartDelay);
-        _starter.StartSound(_clip.AudioStartDelay);
+        _starter.StartVideo();
+        _starter.StartSound();
     }
 }

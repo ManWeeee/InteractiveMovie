@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89216a86da12c314dbc58ad2cf19ba26, type: 3}
+  m_Name: MenuClip
+  m_EditorClassIdentifier: 
+  _videoClip: {fileID: 32900000, guid: 076a8a98b35f4544fa161e7a0de27e2e, type: 3}
+  _videoStartDealy: 0
+  _audioClip: {fileID: 8300000, guid: 76e0e9eac81b1fe4e93b0e2a5bd6410b, type: 3}
+  _audioStartDelay: 0.15
+  _nextClips:
+  - {fileID: 11400000, guid: eb844457f84bc0a41b1165da755ed72c, type: 2}
+  _choicePositions:
+  - {x: 0, y: 0}

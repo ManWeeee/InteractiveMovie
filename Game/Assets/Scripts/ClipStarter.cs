@@ -7,12 +7,12 @@ public class ClipStarter : MonoBehaviour
     public static event Action OnVideoStarted;
     public static event Action OnAudioStarted;
 
-    public void StartSound(float seconds)
+    public void StartSound(float seconds = 0)
     {
         StartCoroutine(StartSoundIn(seconds));
     }
 
-    public void StartVideo(float seconds)
+    public void StartVideo(float seconds = 0)
     {
         StartCoroutine(StartVideoIn(seconds));
     }
