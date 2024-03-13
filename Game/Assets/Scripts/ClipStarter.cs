@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class ClipStarter : MonoBehaviour
+/*public class ClipStarter : MonoBehaviour
 {
     public static event Action OnVideoStarted;
     public static event Action OnAudioStarted;
@@ -29,3 +29,4 @@ public class ClipStarter : MonoBehaviour
         OnVideoStarted?.Invoke();
     }
 }
+*/

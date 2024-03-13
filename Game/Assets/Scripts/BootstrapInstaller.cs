@@ -4,21 +4,21 @@ using Zenject;
 
 public class BootstrapInstaller : MonoInstaller
 {
-    [SerializeField]
-    private SceneLoader _sceneLoader;
+/*    [SerializeField]
+    private SceneLoader _sceneLoader;*/
     public override void InstallBindings()
     {
         /*BindClipLoader();
         BindClipStarter();*/
     }
-    private void BindSceneLoader()
+ /*   private void BindSceneLoader()
     {
 
         Container
             .Bind<SceneLoader>()
             .FromInstance(_sceneLoader)
              .AsSingle();
-    }
+    }*/
 /*    private void BindClipLoader()
     {
         ClipLoader clipLoader = Container

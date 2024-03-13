@@ -261,6 +261,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1781060040}
   - {fileID: 1479966905}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -331,7 +332,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -420,12 +421,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781060037}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -959, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 800176343}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1896514205
 PrefabInstance:
@@ -479,6 +480,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 4467043618594767524, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _fillSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _loadingBar
+      value: 
+      objectReference: {fileID: 1479966906}
     - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
       propertyPath: _loadingCamera
       value: 
@@ -487,6 +500,66 @@ PrefabInstance:
       propertyPath: _loadingCanvas
       value: 
       objectReference: {fileID: 800176342}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _gameScene.guid
+      value: 9fc0d4010bbf28b4594072e72b8655ab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _gameScene.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _mainMenuScene.guid
+      value: 9cec24da1b3dee446b82f017c2cc77f2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _mainMenuScene.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 9cec24da1b3dee446b82f017c2cc77f2, type: 3}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[0].GroupName
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[1].GroupName
+      value: Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[0].Scenes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[1].Scenes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[0].Scenes.Array.data[0]._reference.guid
+      value: 9cec24da1b3dee446b82f017c2cc77f2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[1].Scenes.Array.data[0]._reference.guid
+      value: 9fc0d4010bbf28b4594072e72b8655ab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[1].Scenes.Array.data[1]._reference.guid
+      value: 9cec24da1b3dee446b82f017c2cc77f2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[0].Scenes.Array.data[0]._reference.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 9cec24da1b3dee446b82f017c2cc77f2, type: 3}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[1].Scenes.Array.data[0]._reference.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+    - target: {fileID: 5052509380321211782, guid: 0fea403c60599f445b45da4cdb90995f, type: 3}
+      propertyPath: _sceneGroup.Array.data[1].Scenes.Array.data[1]._reference.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 9cec24da1b3dee446b82f017c2cc77f2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -496,7 +569,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1781060040}
   - {fileID: 800176343}
   - {fileID: 1896514205}
   - {fileID: 295838185}
