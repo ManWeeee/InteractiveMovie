@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -5,24 +6,27 @@ using UnityEngine.Video;
 public class Clip : ScriptableObject
 {
     [SerializeField]
-    VideoClip _videoClip;
-/*    [SerializeField]
-    private float _videoStartDealy;*/
+    string _videoClipName;
+    [SerializeField]
+    private float _videoStartDealy;
     [SerializeField]
     AudioClip _audioClip;
-/*    [SerializeField]
-    private float _audioStartDelay;*/
+    [SerializeField]
+    private float _audioStartDelay;
     [SerializeField]
     Clip[] _nextClips;
     [SerializeField]
     Vector2[] _choicePositions;
 
-    public VideoClip VideoClip => _videoClip;
+    public string VideoClipName { 
+        get => _videoClipName; 
+        set => _videoClipName = value;
+    }
     public AudioClip AudioClip => _audioClip;
-/*    public float VideoStartDelay => _videoStartDealy;
-    public float AudioStartDelay => _audioStartDelay;*/
+    public float VideoStartDelay => _videoStartDealy;
+    public float AudioStartDelay => _audioStartDelay;
     public Clip[] NextClips => _nextClips;
-    public bool haveChoices => _nextClips.Length > 0;
+    public bool haveChoices => _nextClips.Length > 1;
 
     public Clip GetNextClip(int index)
     {
@@ -34,3 +38,35 @@ public class Clip : ScriptableObject
         return _choicePositions[index];
     }
 }
+
+/*[CustomPropertyDrawer(typeof(Clip))]
+public class VideoDataPropertyDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        EditorGUI.BeginProperty(position, label, property);
+
+        EditorGUI.PropertyField(position, property, label, true);
+
+        if (Event.current.type == EventType.DragUpdated || Event.current.type == EventType.DragPerform)
+        {
+            DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+
+            if (Event.current.type == EventType.DragPerform)
+            {
+                DragAndDrop.AcceptDrag();
+
+                foreach (Object obj in DragAndDrop.objectReferences)
+                {
+                    string path = AssetDatabase.GetAssetPath(obj);
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        property.stringValue = path;
+                    }
+                }
+            }
+        }
+
+        EditorGUI.EndProperty();
+    }
+}*/

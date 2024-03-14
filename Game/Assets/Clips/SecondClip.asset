@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89216a86da12c314dbc58ad2cf19ba26, type: 3}
   m_Name: SecondClip
   m_EditorClassIdentifier: 
-  _videoClip: {fileID: 32900000, guid: e2ec852b014f92f4f8108b16e6902448, type: 3}
+  _videoClipName: /RubikCube.mp4
   _videoStartDealy: 0
   _audioClip: {fileID: 0}
   _audioStartDelay: 0

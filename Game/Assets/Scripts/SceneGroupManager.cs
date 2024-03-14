@@ -40,7 +40,7 @@ public class SceneGroupManager
                 continue;
 
             var operation = SceneManager.LoadSceneAsync(sceneData.Reference.Path, LoadSceneMode.Additive);
-            await Task.Delay(10000);
+            await Task.Delay(100);
             operationGroup.Operations.Add(operation);
             OnSceneLoaded?.Invoke(sceneData.Name);
         }
@@ -57,7 +57,7 @@ public class SceneGroupManager
         {
             SceneManager.SetActiveScene(activeScene);
         }
-
+        
         OnSceneGroupLoaded?.Invoke();
     }
 
@@ -74,7 +74,7 @@ public class SceneGroupManager
             if (!sceneAt.isLoaded) continue;
 
             var sceneName = sceneAt.name;
-            if (sceneName == "Bootstrapper" || sceneName.Equals(activeScene)) continue;
+            if (sceneName == "Bootstrapper" /*|| sceneName.Equals(activeScene)*/) continue;
             unloadSceneNames.Add(sceneName);
         }
 

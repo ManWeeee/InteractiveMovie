@@ -12,12 +12,9 @@ GameObject:
   - component: {fileID: 7969054316411828786}
   - component: {fileID: 1157459461214546161}
   - component: {fileID: 826900380960506484}
+  - component: {fileID: 3718611479162383291}
   - component: {fileID: 9164914669250064994}
   - component: {fileID: 4555827980613886488}
-  - component: {fileID: 8265828884905268091}
-  - component: {fileID: 7932756183850247695}
-  - component: {fileID: 7017140657236009055}
-  - component: {fileID: 6717325802636033489}
   m_Layer: 5
   m_Name: CinemaScreen
   m_TagString: Untagged
@@ -107,6 +104,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3718611479162383291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749975260956011167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ff3914c0c02924c863d4cf0c4df3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnVideoReady: {fileID: 11400000, guid: 90a8272890839f14487fc38438f5d7ed, type: 2}
+  _clip: {fileID: 0}
+  _videoPlayer: {fileID: 0}
+  _audioSource: {fileID: 0}
 --- !u!328 &9164914669250064994
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -125,10 +138,10 @@ VideoPlayer:
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 1
   m_AspectRatio: 5
-  m_DataSource: 0
+  m_DataSource: 1
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
+  m_AudioOutputMode: 0
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
@@ -138,9 +151,9 @@ VideoPlayer:
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
-  m_SkipOnDrop: 1
+  m_SkipOnDrop: 0
   m_Looping: 0
-  m_WaitForFirstFrame: 1
+  m_WaitForFirstFrame: 0
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
 --- !u!82 &4555827980613886488
@@ -239,55 +252,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8265828884905268091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749975260956011167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8447c3003dc08e458eb5ce3c7a6d9c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _videoPlayer: {fileID: 0}
---- !u!114 &7932756183850247695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749975260956011167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd3972ee532fa024b9a4a6474e08dc6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _videoPlayer: {fileID: 0}
---- !u!114 &7017140657236009055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749975260956011167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88e6ee6a1fbb66b4898262c1a6c2af51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
---- !u!114 &6717325802636033489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749975260956011167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f76111296b077c4fb76ac82a86e8cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSorce: {fileID: 0}

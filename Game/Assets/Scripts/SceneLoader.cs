@@ -21,20 +21,22 @@ public partial class SceneLoader : MonoBehaviour
     SceneGroup[] _sceneGroup;
 
     float targetProgress;
+    int currentGroupIndex;
     bool isLoading;
 
     public readonly SceneGroupManager sceneGroupManager = new SceneGroupManager();
 
     private void Awake()
     {
-        sceneGroupManager.OnSceneLoaded += sceneName => Debug.Log($"Scene loaded {sceneName}");
-        sceneGroupManager.OnSceneUnloaded += sceneName => Debug.Log($"Scene unloaded {sceneName}");
+        sceneGroupManager.OnSceneLoaded += sceneName => Debug.Log($"Loaded: {sceneName}");
+        sceneGroupManager.OnSceneUnloaded += sceneName => Debug.Log($"Unloaded: {sceneName}");
         sceneGroupManager.OnSceneGroupLoaded += () => Debug.Log($"Scene group Loaded");
     }
 
     private async void Start()
     {
-        await LoadSceneGroup(0);
+        currentGroupIndex = 0;
+        await LoadSceneGroup(currentGroupIndex);
     }
 
     private void Update()
@@ -49,6 +51,11 @@ public partial class SceneLoader : MonoBehaviour
         _loadingBar.fillAmount = Mathf.Lerp(currentFillAmount, targetProgress, Time.deltaTime * dynamicFillSpeed);
     }
 
+    public async void LoadSceneGroup()
+    {
+        await LoadSceneGroup(currentGroupIndex);
+    }
+
     public async Task LoadSceneGroup(int index)
     {
         _loadingBar.fillAmount = 0;
@@ -61,10 +68,10 @@ public partial class SceneLoader : MonoBehaviour
         progress.OnProgressed += target => targetProgress = Mathf.Max(target, targetProgress);
         EnableLoadingCanvas();
         await sceneGroupManager.LoadScenes(_sceneGroup[index], progress);
-        EnableLoadingCanvas(false);
+        currentGroupIndex++;
     }
 
-    void EnableLoadingCanvas(bool enable = true)
+    public void EnableLoadingCanvas(bool enable = true)
     {
         isLoading = enable;
         _loadingCamera.gameObject.SetActive(enable);

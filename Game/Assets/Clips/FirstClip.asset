@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89216a86da12c314dbc58ad2cf19ba26, type: 3}
   m_Name: FirstClip
   m_EditorClassIdentifier: 
-  _videoClip: {fileID: 32900000, guid: 5e10bef1e4eb0d84bb7ca94fbeb5cbd5, type: 3}
+  _videoClipName: /Aproach.mp4
   _videoStartDealy: 0
   _audioClip: {fileID: 0}
   _audioStartDelay: 0

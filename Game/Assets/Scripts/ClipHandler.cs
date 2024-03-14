@@ -1,11 +1,14 @@
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 using Zenject;
 
 public class ClipHandler : MonoBehaviour
 {
+    [SerializeField]
+    GameEvent OnVideoReady;
     [SerializeField]
     Clip _clip;
     [SerializeField]
@@ -13,12 +16,12 @@ public class ClipHandler : MonoBehaviour
     [SerializeField]
     AudioSource _audioSource;
 
-    public static event Action OnClipReady;
+    public static Action<Clip> OnClipLoaded;
 
     [Inject]
     private void Construct(Clip clip)
     {
-       LoadClip(clip);
+        _clip = clip;
     }
 
     private void Awake()
@@ -31,7 +34,7 @@ public class ClipHandler : MonoBehaviour
 
     private void Start()
     {
-        SetVideoClip(_clip.VideoClip);
+        SetVideoClip(_clip.VideoClipName);
         SetAudioClip(_clip.AudioClip);
         _videoPlayer.Prepare();
     }
@@ -43,14 +46,12 @@ public class ClipHandler : MonoBehaviour
     private void LoadClip(Clip clip)
     {
         _clip = clip;
-        /*_starter.StartVideo();
-        _starter.StartSound();*/
+        SetVideoClip(_clip.VideoClipName);
+        SetAudioClip(_clip.AudioClip);
     }
     private void LoadNextClip(int index)
     {
-        _clip = _clip.GetNextClip(index);
-        /*_starter.StartVideo();
-        _starter.StartSound();*/
+        LoadClip(_clip.GetNextClip(index));
     }
 
     public void StartClip(VideoPlayer source)
@@ -58,6 +59,7 @@ public class ClipHandler : MonoBehaviour
         if (source.isPrepared)
         {
             StartVideo();
+            OnVideoReady.Raise();
         }
         StartAudio();
     }
@@ -70,9 +72,9 @@ public class ClipHandler : MonoBehaviour
     {
         _videoPlayer.Play();
     }
-    public void SetVideoClip(VideoClip clip)
+    public void SetVideoClip(string videoClipDataPath)
     {
-        _videoPlayer.clip = clip;
+        _videoPlayer.url = "file://" + Application.streamingAssetsPath + videoClipDataPath;
     }
     public void SetAudioClip(AudioClip clip)
     {

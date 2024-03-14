@@ -11,7 +11,7 @@ public class DecisionMaker : MonoBehaviour
 
     private void Awake()
     {
-        //ClipLoader.OnClipLoaded += SetActiveButtons;
+        ClipHandler.OnClipLoaded += SetActiveButtons;
         _choices = new Button[4];
         _choices = GetComponentsInChildren<Button>();
     }
@@ -21,16 +21,16 @@ public class DecisionMaker : MonoBehaviour
         OnDecisionMade?.Invoke(index);
     }
 
- /*   public void SetActiveButtons(Clip clip)
+    public void SetActiveButtons(Clip clip)
     {
         for (int i = 0; i < _choices.Length; i++)
         {
             if (clip.haveChoices)
                 SetButtonsPosition(_choices[i], clip.GetPosition(i));
         }
-    }*/
+    }
 
-   /* private void SetButtonState(Button btn, bool state)
+    private void SetButtonState(Button btn, bool state)
     {
         btn.gameObject.SetActive(state);
     }
@@ -38,5 +38,5 @@ public class DecisionMaker : MonoBehaviour
     private void SetButtonsPosition(Button btn, Vector2 position)
     {
         btn.gameObject.GetComponent<Image>().rectTransform.localPosition = position;
-    }*/
+    }
 }
