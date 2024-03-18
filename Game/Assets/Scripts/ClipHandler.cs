@@ -16,46 +16,32 @@ public class ClipHandler : MonoBehaviour
     [SerializeField]
     AudioSource _audioSource;
 
-    public static Action<Clip> OnClipLoaded;
+    private bool _isFree = true;
 
-    [Inject]
-    private void Construct(Clip clip)
-    {
-        _clip = clip;
-    }
+    public bool IsFree => _isFree;
+
+    public static Action<Clip> OnClipLoaded;
+    public event Action<ClipHandler> OnVideoStarted;
 
     private void Awake()
     {
         _videoPlayer = GetComponent<VideoPlayer>();
         _audioSource = GetComponent<AudioSource>();
         _videoPlayer.prepareCompleted += StartClip;
-        DecisionMaker.OnDecisionMade += LoadNextClip;
+        if (!_videoPlayer.isLooping)
+            _videoPlayer.loopPointReached += (VideoPlayer player) => { _videoPlayer.url = ""; _isFree = true; _videoPlayer.renderMode = VideoRenderMode.CameraFarPlane; };
     }
 
-    private void Start()
-    {
-        SetVideoClip(_clip.VideoClipName);
-        SetAudioClip(_clip.AudioClip);
-        _videoPlayer.Prepare();
-    }
-
-    private void OnDestroy()
-    {
-        DecisionMaker.OnDecisionMade -= LoadNextClip;
-    }
-    private void LoadClip(Clip clip)
+    public void LoadClip(Clip clip)
     {
         _clip = clip;
-        SetVideoClip(_clip.VideoClipName);
-        SetAudioClip(_clip.AudioClip);
-    }
-    private void LoadNextClip(int index)
-    {
-        LoadClip(_clip.GetNextClip(index));
+        SetVideoClip(clip.VideoClipName);
+        SetAudioClip(clip.AudioClip);
     }
 
     public void StartClip(VideoPlayer source)
     {
+        Debug.Log("Clip should Start");
         if (source.isPrepared)
         {
             StartVideo();
@@ -71,10 +57,12 @@ public class ClipHandler : MonoBehaviour
     public void StartVideo()
     {
         _videoPlayer.Play();
+        OnVideoStarted?.Invoke(this);
     }
     public void SetVideoClip(string videoClipDataPath)
     {
         _videoPlayer.url = "file://" + Application.streamingAssetsPath + videoClipDataPath;
+        _videoPlayer.Prepare();
     }
     public void SetAudioClip(AudioClip clip)
     {

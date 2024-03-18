@@ -8,11 +8,11 @@ public class Clip : ScriptableObject
     [SerializeField]
     string _videoClipName;
     [SerializeField]
-    private float _videoStartDealy;
-    [SerializeField]
     AudioClip _audioClip;
     [SerializeField]
     private float _audioStartDelay;
+    [SerializeField]
+    private float _decisionDelay;
     [SerializeField]
     Clip[] _nextClips;
     [SerializeField]
@@ -23,7 +23,7 @@ public class Clip : ScriptableObject
         set => _videoClipName = value;
     }
     public AudioClip AudioClip => _audioClip;
-    public float VideoStartDelay => _videoStartDealy;
+    public float DecisionDelay => _decisionDelay;
     public float AudioStartDelay => _audioStartDelay;
     public Clip[] NextClips => _nextClips;
     public bool haveChoices => _nextClips.Length > 1;
