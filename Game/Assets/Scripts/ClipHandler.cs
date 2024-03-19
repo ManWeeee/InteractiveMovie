@@ -16,34 +16,35 @@ public class ClipHandler : MonoBehaviour
     [SerializeField]
     AudioSource _audioSource;
 
-    private bool _isFree = true;
-
-    public bool IsFree => _isFree;
-
-    public static Action<Clip> OnClipLoaded;
-    public event Action<ClipHandler> OnVideoStarted;
+    //public static Action<Clip> OnClipLoaded;
+    public Clip Clip => _clip;
+    public bool VideoIsPrepared => _videoPlayer.isPrepared;
+    public event Action OnVideoStarted;
+    public event Action OnVideoFinished;
 
     private void Awake()
     {
         _videoPlayer = GetComponent<VideoPlayer>();
         _audioSource = GetComponent<AudioSource>();
-        _videoPlayer.prepareCompleted += StartClip;
         if (!_videoPlayer.isLooping)
-            _videoPlayer.loopPointReached += (VideoPlayer player) => { _videoPlayer.url = ""; _isFree = true; _videoPlayer.renderMode = VideoRenderMode.CameraFarPlane; };
+            _videoPlayer.loopPointReached += (VideoPlayer player) => { _videoPlayer.url = ""; OnVideoFinished?.Invoke(); };
     }
 
     public void LoadClip(Clip clip)
     {
-        _clip = clip;
-        SetVideoClip(clip.VideoClipName);
-        SetAudioClip(clip.AudioClip);
+        if (_clip != clip)
+        {
+            _clip = clip;
+            SetVideoClip(clip.VideoClipName);
+            SetAudioClip(clip.AudioClip);
+        }
     }
 
-    public void StartClip(VideoPlayer source)
+    public void StartClip()
     {
-        Debug.Log("Clip should Start");
-        if (source.isPrepared)
+        if (VideoIsPrepared)
         {
+            Debug.Log("Clip should Start");
             StartVideo();
             OnVideoReady.Raise();
         }
@@ -57,7 +58,7 @@ public class ClipHandler : MonoBehaviour
     public void StartVideo()
     {
         _videoPlayer.Play();
-        OnVideoStarted?.Invoke(this);
+        OnVideoStarted?.Invoke();
     }
     public void SetVideoClip(string videoClipDataPath)
     {
