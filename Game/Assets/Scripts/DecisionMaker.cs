@@ -11,7 +11,7 @@ public class DecisionMaker : MonoBehaviour
     [SerializeField]
     ClipHandler[] clipHandlers;
     [SerializeField]
-    float _secondsToMakeAChoice = 3f;
+    float _secondsToMakeAChoice = 6f;
 
     public static event Action<int> OnDecisionMade;
     public static event Action OnDecisionDone;
@@ -50,21 +50,5 @@ public class DecisionMaker : MonoBehaviour
         int index = rand.Next(handler.Clip.NextClips.Length);
         Debug.Log($"MakeChoice({index})");
         MakeChoice(index);
-        _decisionMakerUI.StartHideUICoroutine();
-
     }
-
-    /*    public void SetActiveButtonsPositions(Clip clip)
-        {
-            for (int i = 0; i < _choices.Length; i++)
-            {
-                if (clip.haveChoices)
-                    SetButtonsPosition(_choices[i], clip.GetPosition(i));
-            }
-        }
-
-        private void SetButtonsPosition(Button btn, Vector2 position)
-        {
-            btn.gameObject.GetComponent<Image>().rectTransform.localPosition = position;
-        }*/
 }

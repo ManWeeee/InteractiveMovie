@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +12,15 @@ public class DecisionMakerUI : MonoBehaviour
     Image _decisionTimeBar;
     [SerializeField]
     float _animationDuration = 0.5f;
-
+    Coroutine _coroutine;
+    private void Start()
+    {
+        HideUI();
+    }
     public void StartShowUICoroutine(Clip clip)
     {
-        StartCoroutine(ShowUICoroutine(clip));
+        
+       _coroutine = StartCoroutine(ShowUICoroutine(clip));
     }
 
     public void StartHideUICoroutine()
@@ -24,8 +30,9 @@ public class DecisionMakerUI : MonoBehaviour
 
     private IEnumerator ShowUICoroutine(Clip clip)
     {
+        Debug.Log("StartCoroutine");
         ShowUI(clip);
-        yield return null;
+        yield break;
     }
 
     private IEnumerator HideUICoroutine()
@@ -43,28 +50,31 @@ public class DecisionMakerUI : MonoBehaviour
         {
             if (i < clipLength)
             {
-                _choices[i].GetComponent<Image>().CrossFadeAlpha(alpha, _animationDuration, false);
+                _choices[i].GetComponent<Image>().CrossFadeAlpha(alpha, _animationDuration, true);
                 _choices[i].enabled = true;
             }
             else
             {
-                _choices[i].GetComponent<Image>().CrossFadeAlpha(0, _animationDuration, false);
+                _choices[i].GetComponent<Image>().CrossFadeAlpha(0, _animationDuration, true);
                 _choices[i].enabled = false;
             }
         }
-        _decisionTimeBar.CrossFadeAlpha(alpha, _animationDuration, false);
+        _decisionTimeBar.CrossFadeAlpha(alpha, _animationDuration, true);
     }
 
     private void HideUI()
     {
-        int alpha = 0;
-
+        float alpha = 0;
         for (int i = 0; i < _choices.Length; i++)
         {
-            _choices[i].GetComponent<Image>().CrossFadeAlpha(alpha, _animationDuration, false);
+            _choices[i].GetComponent<Image>().CrossFadeAlpha(alpha, _animationDuration, true);
+
             _choices[i].enabled = false;
         }
-
-        _decisionTimeBar.CrossFadeAlpha(alpha, _animationDuration, false);
+        _choices[0].GetComponent<Image>().CrossFadeAlpha(alpha, _animationDuration, false);
+        _choices[1].GetComponent<Image>().CrossFadeAlpha(alpha, _animationDuration, false);
+        _choices[2].GetComponent<Image>().CrossFadeAlpha(alpha, _animationDuration, false);
+        _choices[3].GetComponent<Image>().CrossFadeAlpha(alpha, _animationDuration, false);
+        _decisionTimeBar.CrossFadeAlpha(alpha, _animationDuration, true);
     }
 }
