@@ -3,18 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Zenject;
 
 public class ClipLoader : MonoBehaviour
 {
     [SerializeField]
-    VideoSwapper swapper;
+    ClipHandler clipHandler;
     [SerializeField]
     Clip _clip;
-    [SerializeField]
-    int _nextClipIndex = 0;
 
-    public  VideoSwapper Swapper => swapper;
+    //public event Action<Clip> OnClipChanged;
 
     [Inject]
     private void Construct(Clip clip)
@@ -23,40 +22,30 @@ public class ClipLoader : MonoBehaviour
     }
     private void Awake()
     {
-        swapper.OnActiveHandlerSwapped += LoadNextClip;
-        DecisionMaker.OnDecisionMade += ChangeNextClipIndex;
+        DecisionMaker.OnDecisionMade += ChangeNextClipByIndex;
     }
     private void OnDestroy()
     {
-        swapper.OnActiveHandlerSwapped -= LoadNextClip;
+        DecisionMaker.OnDecisionMade -= ChangeNextClipByIndex;
     }
 
-    private async void Start()
+    private void Start()
     {
-        LoadClip(swapper.ActiveHandler);
-        while (!swapper.ActiveHandler.VideoIsPrepared)
-        {
-            await Task.Delay(200);
-        }
-        swapper.ActiveHandler.StartClip();
+        LoadClip();
+        clipHandler.StartClip();
     }
 
-    private void LoadClip(ClipHandler handler)
+    private void LoadClip()
     {
-        handler.LoadClip(_clip);
+        clipHandler.Handle(_clip);
+        //OnClipChanged?.Invoke(_clip);
     }
 
-    private void LoadNextClip(ClipHandler handler)
+    private void ChangeNextClipByIndex(int index)
     {
-        _clip = _clip.GetNextClip(_nextClipIndex);
-        handler.LoadClip(_clip);
-        _nextClipIndex = 0;
-    }
-
-    private void ChangeNextClipIndex(int index)
-    {
-        _nextClipIndex = index;
-/*        _clip = _clip.GetNextClip(index);
-        swapper.InActiveHandler.LoadClip(_clip);*/
+        Debug.Log(_clip.VideoClipName);
+        _clip = _clip.GetNextClip(index);
+        LoadClip();
+        Debug.Log(_clip.VideoClipName);
     }
 }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SecondClip
   m_EditorClassIdentifier: 
   _videoClipName: /RubikCube.mp4
-  _videoStartDealy: 0
   _audioClip: {fileID: 0}
   _audioStartDelay: 0
+  _decisionDelaySeconds: 0
   _nextClips:
   - {fileID: 11400000, guid: eb844457f84bc0a41b1165da755ed72c, type: 2}
   _choicePositions:

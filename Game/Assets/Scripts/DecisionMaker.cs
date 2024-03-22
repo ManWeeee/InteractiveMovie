@@ -1,76 +1,70 @@
 using System;
 using System.Collections;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DecisionMaker : MonoBehaviour {
+public class DecisionMaker : MonoBehaviour 
+{
     [SerializeField]
-    ClipLoader _loader;
+    DecisionMakerUI _decisionMakerUI;
     [SerializeField]
-    Clip _clip;
-    [SerializeField]
-    ClipHandler _handler;
+    ClipHandler[] clipHandlers;
     [SerializeField]
     float _secondsToMakeAChoice = 3f;
 
     public static event Action<int> OnDecisionMade;
     public static event Action OnDecisionDone;
-
+    Coroutine coroutine;
     private void Awake()
     {
-        //_loader.Swapper.OnActiveHandlerSwapped += TakeClipHandler;
+        clipHandlers = FindObjectsByType<ClipHandler>(FindObjectsSortMode.InstanceID);
+        foreach (var clipHandler in clipHandlers)
+            clipHandler.OnDecisionStarted += StartDecisionCoroutine;
     }
-
     public void MakeChoice(int index)
     {
         OnDecisionMade?.Invoke(index);
         OnDecisionDone?.Invoke();
-       // Debug.Log("Coroutine Stoped");
-       // StopCoroutine(StartDecision());
+        StopCoroutine(coroutine);
+        _decisionMakerUI.StartHideUICoroutine();
     }
 
-    private void TakeClipHandler(ClipHandler handler)
+    public void StartDecisionCoroutine(ClipHandler handler)
     {
-        _clip = handler.Clip;
-        _handler = handler;
-        //_handler.OnVideoStarted += StartDecisionCoroutine;
+        coroutine = StartCoroutine(DecisionCoroutine(handler));
     }
 
-    private void StartDecisionCoroutine()
+    public IEnumerator DecisionCoroutine(ClipHandler handler)
     {
-        Debug.Log("StartDecisionCoroutine Started");
-        StartCoroutine(StartDecisionDelay());
-        _handler.OnVideoStarted -= StartDecisionCoroutine;
-    }
-
-    private IEnumerator StartDecisionDelay()
-    {
-        Debug.Log("startDecisionDelay Started");
-        yield return new WaitForSeconds(_clip.DecisionDelay);
-        Debug.Log("Decision delay passed");
-        StartCoroutine(StartDecision());
-        
-    }
-
-    public IEnumerator StartDecision()
-    {
-        Debug.Log("wait for Input");
-        yield return new WaitForSeconds(_secondsToMakeAChoice);
-        Debug.Log("MakeChoice(1)");
-        MakeChoice(1);
-    }
-
-/*    public void SetActiveButtonsPositions(Clip clip)
-    {
-        for (int i = 0; i < _choices.Length; i++)
+        if (!handler.Clip.haveChoices)
         {
-            if (clip.haveChoices)
-                SetButtonsPosition(_choices[i], clip.GetPosition(i));
+            Debug.Log("Decision(0) was done as it has no inherits");
+            MakeChoice(0);
+            yield break;
         }
+        _decisionMakerUI.StartShowUICoroutine(handler.Clip);
+        Debug.Log($"Giving {_secondsToMakeAChoice} seconds for you to make a choice");
+        yield return new WaitForSeconds(_secondsToMakeAChoice);
+        System.Random rand = new System.Random();
+        int index = rand.Next(handler.Clip.NextClips.Length);
+        Debug.Log($"MakeChoice({index})");
+        MakeChoice(index);
+        _decisionMakerUI.StartHideUICoroutine();
+
     }
 
-    private void SetButtonsPosition(Button btn, Vector2 position)
-    {
-        btn.gameObject.GetComponent<Image>().rectTransform.localPosition = position;
-    }*/
+    /*    public void SetActiveButtonsPositions(Clip clip)
+        {
+            for (int i = 0; i < _choices.Length; i++)
+            {
+                if (clip.haveChoices)
+                    SetButtonsPosition(_choices[i], clip.GetPosition(i));
+            }
+        }
+
+        private void SetButtonsPosition(Button btn, Vector2 position)
+        {
+            btn.gameObject.GetComponent<Image>().rectTransform.localPosition = position;
+        }*/
 }

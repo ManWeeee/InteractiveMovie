@@ -15,7 +15,7 @@ MonoBehaviour:
   _videoClipName: /Aproach.mp4
   _audioClip: {fileID: 0}
   _audioStartDelay: 0
-  _decisionDelay: 5
+  _decisionDelaySeconds: 5
   _nextClips:
   - {fileID: 11400000, guid: 8263f0a3f706b8744a884725b54f0704, type: 2}
   - {fileID: 11400000, guid: e2662864b17470741a0932e361f4e84b, type: 2}
